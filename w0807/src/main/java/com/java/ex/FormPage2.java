@@ -8,36 +8,47 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-@WebServlet("/FormPage")
-public class FormPage extends HttpServlet {
-	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doAction 실행");
-		
-		String id = request.getParameter("id");
+@WebServlet("/FormPage2")
+public class FormPage2 extends HttpServlet {
+	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("doAction 실헹");
 		String name = request.getParameter("name");
-		String pw = request.getParameter("pw");
-		System.out.println("id : "+id);
+		int kor = Integer.parseInt(request.getParameter("kor"));
+		int eng = Integer.parseInt(request.getParameter("eng"));
+		int math = Integer.parseInt(request.getParameter("math"));
+		int total = kor+eng+math;
+		double avg = total/3.0;
+		
 		System.out.println("name : "+name);
-		System.out.println("pw : "+pw);
+		System.out.println("kor : "+kor);
+		System.out.println("eng : "+eng);
+		System.out.println("math : "+math);
+		System.out.println("total : "+total);
+		System.out.printf("avg : %.2f\n",avg);
 		
 		
-		//웹페이지 생성가능
+		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
+		
 		writer.println("<html>");
 		writer.println("<head>");
-		writer.println("<title>응답페이지</title>");
+		writer.println("<title>학생성적</title>");
 		writer.println("</head>");
 		writer.println("<body>");
-		writer.println("<h2>입력정보</h2>");
-		writer.println("<p>아이디 : "+id+"</p>");
+		writer.println("<h2>학생성적</h2>");
 		writer.println("<p>이름 : "+name+"</p>");
-		writer.println("<p>패스워드 : "+pw+"</p>");
+		writer.println("<p>국어 : "+kor+"</p>");
+		writer.println("<p>영어 : "+eng+"</p>");
+		writer.println("<p>수학 : "+math+"</p>");
+		writer.println("<p>합계 : "+total+"</p>");
+		writer.println("<p>평균 : "+avg+"</p>");
 		writer.println("</body>");
 		writer.println("</html>");
 		
 		writer.close();
+		
+		
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

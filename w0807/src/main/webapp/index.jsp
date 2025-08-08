@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h2>메인페이지</h2>
-
+	<p></p>
 </body>
 </html>
